@@ -15,7 +15,7 @@
 
     
 
-      class Tennat extends User{
+      class Tenant extends User{
          constructor(name,email,monthly_rent){
             super(name,email)
             this.monthly_rent = monthly_rent;
@@ -32,4 +32,4 @@
       }
       
 
-module.exports = { User, Tennant, Landlord };
+module.exports = { User, Tenant, Landlord };
