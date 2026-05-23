@@ -32,3 +32,4 @@
       }
       
 
+module.exports = { User, Tennant, Landlord };
