@@ -20,6 +20,10 @@ test('addPoints throws error if amount is negative',()=>{
     expect(()=> user1.addPoints(-50)).toThrow();
 })
 
+test('addPoints throws error if amount is not integer',()=>{
+    expect(()=> user1.addPoints('hello')).toThrow();
+})
+
 test('addPoints add points to user', ()=>{
     user1.addPoints(10);
     user1.addPoints(20)
