@@ -2,12 +2,12 @@
 
    class User{
       constructor(name,email){
+         if( !name || !email){
+            throw new Error(`name and email fields cannot be empty`)
+         }
          this.name = name,
          this.email = email,
          this.points = 0
-         if( !name || !email){
-            throw new Error(`${this.Error} field cannot be empty`)
-         }
 
       }
       addPoints(amount){
