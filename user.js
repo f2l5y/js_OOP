@@ -5,6 +5,9 @@
          this.name = name,
          this.email = email,
          this.points = 0
+         if( !name || !email){
+            throw new Error(`${this.Error} field cannot be empty`)
+         }
 
       }
       addPoints(amount){

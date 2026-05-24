@@ -16,6 +16,12 @@ test('User is created with correct properties',()=>{
     expect(user1.points).toBe(0);
 })
 
+test('User is created with empty email and name',()=>{
+    let user2 = new User()
+    expect(()=> user2.name).toThrow();
+    expect(()=> user2.email).toThrow();
+})
+
 test('addPoints throws error if amount is negative',()=>{
     expect(()=> user1.addPoints(-50)).toThrow();
 })
