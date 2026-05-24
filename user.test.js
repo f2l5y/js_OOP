@@ -1,14 +1,22 @@
 const { User, Tenant, Landlord} = require('./user')
 
+let user1
+let tenant1;
+let landlord1;
+
+beforeEach(()=>{
+    user1 = new User('John','john@gmail.com')
+    tenant1 = new Tenant('Tom','tom@gmail.com',850)
+    landlord1 = new Landlord('Tom','tom@gmail.com');
+})
+
 test('User is created with correct properties',()=>{
-    const user1 = new User('John', 'john@gmail.com');
     expect(user1.name).toBe('John');
     expect(user1.email).toBe('john@gmail.com');
     expect(user1.points).toBe(0);
 })
 
 test('addPoints add points to user', ()=>{
-    const user1 = new User('John', 'john@gmail.com');
     user1.addPoints(10);
     user1.addPoints(20)
     expect(user1.points).toBe(30);
@@ -16,7 +24,6 @@ test('addPoints add points to user', ()=>{
 
 
 test('Tenant is created with correct properties', ()=>{
-    const tenant1 = new Tenant('Tom','tom@gmail.com',850);
     tenant1.addPoints(10);
     expect(tenant1.name).toBe('Tom');
     expect(tenant1.email).toBe('tom@gmail.com');
@@ -25,7 +32,6 @@ test('Tenant is created with correct properties', ()=>{
 })
 
 test('Landlord is created with correct properties', ()=>{
-    const landlord1 = new Landlord('Tom','tom@gmail.com');
     landlord1.addPoints(10);
     expect(landlord1.name).toBe('Tom');
     expect(landlord1.email).toBe('tom@gmail.com');
