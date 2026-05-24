@@ -8,6 +8,9 @@
 
       }
       addPoints(amount){
+         if(typeof amount !== 'number' || amount < 0){
+            throw new Error('AMount must be a positive number')
+         }
          this.points +=amount;
          return this.points
       }
