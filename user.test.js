@@ -18,9 +18,9 @@ test('User is created with correct properties',()=>{
 
 
 test('User is created with empty email and name',()=>{
-    expect(()=> new User()).toThrow();
-    expect(()=> new User('Tom')).toThrow();
-    expect(()=> new User(null, 'tom@gmail.com')).toThrow();
+    expect(()=> new User()).toThrow('name and email fields cannot be empty');
+    expect(()=> new User('Tom')).toThrow('email cannot be empty');
+    expect(()=> new User(null, 'tom@gmail.com')).toThrow('name cannot be empty');
 })
 
 

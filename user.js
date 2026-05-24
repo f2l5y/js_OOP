@@ -2,9 +2,15 @@
 
    class User{
       constructor(name,email){
-         if( !name || !email){
+         if( !name && !email){
             throw new Error(`name and email fields cannot be empty`)
          }
+         else if( !name ){
+            throw new Error(`name cannot be empty`)
+         }
+         else if( !email){
+            throw new Error(`email cannot be empty`)}
+        
          this.name = name,
          this.email = email,
          this.points = 0
