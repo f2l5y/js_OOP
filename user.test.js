@@ -1,4 +1,4 @@
-const { User, Tenant, Landlord} = require('./user')
+const { User, Tenant, Landlord, UserFactory, TenantFactory} = require('./user')
 
 let user1
 let tenant1;
@@ -26,6 +26,17 @@ describe('User',()=>{
         expect(()=> new User(null, 'tom@gmail.com')).toThrow('name cannot be empty');
     })
     
+
+    test('User factory function',()=>{
+        const user2 = UserFactory('john doe','johndoe@gmail.com')
+        expect(user2.name).toBe('john doe')
+        expect(user2.email).toBe('johndoe@gmail.com')
+        expect(user2.getPoints()).toBe(0)
+        user2.addPoints(50)
+        expect(user2.getPoints()).toBe(50)
+        expect(user2.points).toBeUndefined()
+
+    })
 })
 
 
@@ -62,6 +73,14 @@ describe('Tenant',()=>{
         user1.addPoints(10);
         user1.addPoints(20)
         expect(user1.points).toBe(30);
+    })
+
+    test('Testing the factory function',()=>{
+        const user3 = TenantFactory('tom','tom@email.com',500)
+        user3.addPoints(1000)
+        expect(user3.getPoints(1000)).toBe(1000)
+        user3.addPoints(1000)
+        expect(user3.getPoints(1000)).toBe(2000)
     })
 })
 
