@@ -1,6 +1,7 @@
 
 
-   class User{
+  //User class
+  class User{
       constructor(name,email){
          if( !name && !email){
             throw new Error(`name and email fields cannot be empty`)
@@ -25,6 +26,16 @@
       }
    }
 
+   //refactoring User Class as Factory function
+   function UserFactory(name2, email2){
+      let points = 0
+      const name = name2;
+      const email = email2;
+      const addPoints = (amount)=> {points+=amount};
+      const getPoints = ()=> points;
+      return{name,email,addPoints,getPoints}
+
+   }
     
 
       class Tenant extends User{
@@ -39,6 +50,13 @@
       }
 
 
+      //refactoring Tenant class as Factory function
+      function TenantFactory(name3,email3,monthly_rent2){
+         const {addPoints,getPoints,name2,email2} = UserFactory(name3,email3)
+         return{name2,email2,addPoints,getPoints,monthly_rent2}
+      }
+
+
 
       class Landlord extends User{
          constructor(name,email){
@@ -47,4 +65,7 @@
       }
       
 
-module.exports = { User, Tenant, Landlord };
+module.exports = { User, Tenant, Landlord , UserFactory, TenantFactory};
+
+
+
