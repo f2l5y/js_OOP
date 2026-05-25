@@ -18,7 +18,7 @@
       }
       addPoints(amount){
          if(typeof amount !== 'number' || amount < 0){
-            throw new Error('AMount must be a positive number')
+            throw new Error('Amount must be a positive number')
          }
          this.points +=amount;
          return this.points
@@ -30,6 +30,9 @@
       class Tenant extends User{
          constructor(name,email,monthly_rent){
             super(name,email)
+            if(typeof monthly_rent != 'number' || monthly_rent < 0){
+               throw new Error('Incorrect value for monthly rent')
+            }
             this.monthly_rent = monthly_rent;
 
          }
