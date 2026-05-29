@@ -29,8 +29,8 @@ describe('User',()=>{
 
     test('User factory function',()=>{
         const user2 = UserFactory('john doe','johndoe@gmail.com')
-        expect(user2.name).toBe('john doe')
-        expect(user2.email).toBe('johndoe@gmail.com')
+        expect(user2.user_name).toBe('john doe')
+        expect(user2.user_email).toBe('johndoe@gmail.com')
         expect(user2.getPoints()).toBe(0)
         user2.addPoints(50)
         expect(user2.getPoints()).toBe(50)
@@ -38,6 +38,7 @@ describe('User',()=>{
 
     })
 })
+
 
 
 
@@ -78,9 +79,11 @@ describe('Tenant',()=>{
     test('Testing the factory function',()=>{
         const user3 = TenantFactory('tom','tom@email.com',500)
         user3.addPoints(1000)
-        expect(user3.getPoints(1000)).toBe(1000)
+        expect(user3.getPoints()).toBe(1000)
         user3.addPoints(1000)
-        expect(user3.getPoints(1000)).toBe(2000)
+        expect(user3.getPoints()).toBe(2000)
+        expect(user3.tenant_name).toBe('tom')
+        expect(user3.tenant_email).toBe('tom@email.com')
     })
 })
 

@@ -26,34 +26,37 @@
       }
    }
 
+   class Tenant extends User{
+      constructor(name,email,monthly_rent){
+         super(name,email)
+         if(typeof monthly_rent != 'number' || monthly_rent < 0){
+            throw new Error('Incorrect value for monthly rent')
+         }
+         this.monthly_rent = monthly_rent;
+
+      }
+   }
+
+
+
+
+
    //refactoring User Class as Factory function
-   function UserFactory(name2, email2){
+   function UserFactory(user_name, user_email){
       let points = 0
-      const name = name2;
-      const email = email2;
       const addPoints = (amount)=> {points+=amount};
       const getPoints = ()=> points;
-      return{name,email,addPoints,getPoints}
+      return{user_name,user_email,addPoints,getPoints}
 
    }
-    
-
-      class Tenant extends User{
-         constructor(name,email,monthly_rent){
-            super(name,email)
-            if(typeof monthly_rent != 'number' || monthly_rent < 0){
-               throw new Error('Incorrect value for monthly rent')
-            }
-            this.monthly_rent = monthly_rent;
-
-         }
-      }
-
 
       //refactoring Tenant class as Factory function
-      function TenantFactory(name3,email3,monthly_rent2){
-         const {addPoints,getPoints,name2,email2} = UserFactory(name3,email3)
-         return{name2,email2,addPoints,getPoints,monthly_rent2}
+      function TenantFactory(tenant_name,tenant_email,monthly_rent2){
+         const {
+            addPoints,
+            getPoints
+         } = UserFactory(tenant_name,tenant_email)
+         return{tenant_name, tenant_email, addPoints,getPoints, monthly_rent2}
       }
 
 
