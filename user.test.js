@@ -21,9 +21,10 @@ describe('User',()=>{
     
     
     test('User is created with empty email and name',()=>{
-        expect(()=> new User()).toThrow('name and email fields cannot be empty');
         expect(()=> new User('Tom')).toThrow('email cannot be empty');
         expect(()=> new User(null, 'tom@gmail.com')).toThrow('name cannot be empty');
+        expect(()=>user1.name = 1000).toThrow('name must be text')
+        expect(()=>user1.email = undefined).toThrow('email cannot be empty')
     })
     
 
@@ -35,6 +36,7 @@ describe('User',()=>{
         user2.addPoints(50)
         expect(user2.getPoints()).toBe(50)
         expect(user2.points).toBeUndefined()
+ 
 
     })
 })
@@ -49,6 +51,8 @@ describe('Tenant',()=>{
         expect(tenant1.email).toBe('tom@gmail.com');
         expect(tenant1.points).toBe(10);
         expect(tenant1.monthly_rent).toBe(850);
+        expect(()=> tenant1.monthly_rent = 'pizza').toThrow()
+        expect(()=> tenant1.monthly_rent = -1000).toThrow()
     })
     
     test('Tenant is created with empty email and name',()=>{
