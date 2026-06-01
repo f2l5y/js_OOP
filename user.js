@@ -3,19 +3,29 @@
   //User class
   class User{
       constructor(name,email){
-         this.name = name,
-         this.email = email,
+          this._validationRequired({ name, email }); 
+         this.name = name;
+         this.email = email;
          this.points = 0
 
       }
 
-      set name(value){
-         if(!value){
-            throw new Error('name cannot be empty')
-         }else if(typeof value !== 'string'){
-            throw new Error ('name must be text')
+      _validationRequired(fields){
+         for(const [key,value] of Object.entries(fields)){
+            if(typeof value !== 'string'){
+               throw new Error(`${key} must be text`)
+            }
+            if(!value || value.trim() === ''){
+               throw new Error(`${key} cannot be empty`)
+            }
+         
          }
-         return this._name = value
+      }
+
+
+      set name(value){
+       this._validationRequired({name: value})
+       this._name = value
       }
 
       get name(){
@@ -23,12 +33,8 @@
       }
       
       set email(value){
-         if(!value){
-            throw new Error('email cannot be empty')
-         }else if(typeof value !== 'string'){
-            throw new Error ('email must be text')
-         }
-         return this._email = value
+         this._validationRequired({email:value})
+         this._email = value
       }
 
       get email(){
