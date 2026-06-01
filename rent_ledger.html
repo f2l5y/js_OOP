@@ -7,36 +7,5 @@
 </head>
 <body>
 </body>
-<script>
-
-      function User(name,email,points){
-         this.name = name;
-         this.email = email;
-         this.points = 0;
-      }
-
-      User.prototype.addPoints = function(amount){ 
-         this.points += amount
-         return this.points;   
-      }
-
-      
-      function Tennant(name, email, montlyRent){
-         User.call(this,name,email);
-         this.montlyRent = montlyRent;
-      } 
-      
-      Tennant.prototype = Object.create(User.prototype)
-
-      
-      function Landlord(name,email){
-         User.call(this,name,email);
-      }
-      
-      Landlord.prototype = Object.create(User)
-      
-     let tennat1 = new Tennant('John', 'johndoe@gmail.com',1000)
-     let landlord1 = new Landlord('Mark','mark92@gmail.com')
-
-</script>
+<script src="user.js"></script>
 </html>
