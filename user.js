@@ -2,10 +2,12 @@
 
   //User class
   class User{
+      #name;
+      #email;
       constructor(name,email){
-          this._validationRequired({ name, email }); 
-         this.name = name;
-         this.email = email;
+         this._validationRequired({ name, email }); 
+         this.#name = name;
+         this.#email = email;
          this.points = 0
 
       }
@@ -25,20 +27,20 @@
 
       set name(value){
        this._validationRequired({name: value})
-       this._name = value
+       this.#name = value
       }
 
       get name(){
-         return this._name
+         return this.#name
       }
       
       set email(value){
          this._validationRequired({email:value})
-         this._email = value
+         this.#email = value
       }
 
       get email(){
-         return this._email
+         return this.#email
       }
 
       addPoints(amount){
@@ -50,7 +52,11 @@
       }
    }
 
+
    class Tenant extends User{
+      #onTimeStreak = 0;
+      #monthly_rent;
+
       constructor(name,email,monthly_rent){
          super(name,email) 
          this.monthly_rent = monthly_rent;
@@ -70,6 +76,18 @@
          return this._monthly_rent
       }
                
+
+      recordPayment(wasOnTime){
+         if(wasOnTime){
+            this.#onTimeStreak +=1;
+            this.addPoints(10);
+            if(this.#onTimeStreak === 6){
+               this.addPoints(500);
+            }
+         }else{
+               this.#onTimeStreak = 0;
+            }
+      }
    }
 
 
@@ -94,10 +112,18 @@
 
 
       class Landlord extends User{
-         constructor(name,email){
+         #bank_account_id;
+
+         constructor(name,email,bank_id){
             super(name,email)
+            this.#bank_account_id = bank_id;
+         }
+
+         get bank_account_id(){
+            return this.#bank_account_id;
          }
       }
+
       
 
 module.exports = { User, Tenant, Landlord , UserFactory, TenantFactory};

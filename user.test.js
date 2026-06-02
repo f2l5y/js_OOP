@@ -89,6 +89,22 @@ describe('Tenant',()=>{
         expect(user3.tenant_name).toBe('tom')
         expect(user3.tenant_email).toBe('tom@email.com')
     })
+
+
+    test('Regualar on-time payment triggers private #addPoints', ()=>{
+        const tenant = new Tenant('Alex','alex@email.com',1000);
+        tenant.recordPayment(true);
+        expect(tenant.points).toBe(10)
+    })
+
+    test('6-month streak triggers huge bonus points',()=>{
+        const tenant = new Tenant('Alex','alex@email.com',1000);
+        for (let i=0;i<6;i++){
+            tenant.recordPayment(true);
+        }
+        expect(tenant.points).toBe(560)
+
+    })
 })
 
 
