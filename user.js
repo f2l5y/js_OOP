@@ -14,14 +14,18 @@
 
       _validationRequired(fields){
          for(const [key,value] of Object.entries(fields)){
+            if(!value || (typeof value === 'string' && value.trim() === '')){
+               throw new Error(`${key} cannot be empty`)
+            }
             if(typeof value !== 'string'){
                throw new Error(`${key} must be text`)
             }
-            if(!value || value.trim() === ''){
-               throw new Error(`${key} cannot be empty`)
-            }
          
          }
+      }
+
+      static formatCurrency(amount){
+         return `€${amount.toFixed(2)}`
       }
 
 
@@ -114,6 +118,8 @@
       class Landlord extends User{
          #bank_account_id;
 
+         static MANAGEMENT_FEE_RATE = 0.10;
+
          constructor(name,email,bank_id){
             super(name,email)
             this.#bank_account_id = bank_id;
@@ -121,6 +127,10 @@
 
          get bank_account_id(){
             return this.#bank_account_id;
+         }
+
+         calculateMonthlyFee(rentAmount){
+            return User.formatCurrency(rentAmount*Landlord.MANAGEMENT_FEE_RATE)
          }
       }
 

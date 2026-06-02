@@ -108,10 +108,6 @@ describe('Tenant',()=>{
 })
 
 
-
-
-
-
 describe('Landlord',()=>{
     test('Landlord is created with correct properties', ()=>{
         landlord1.addPoints(10);
@@ -119,6 +115,25 @@ describe('Landlord',()=>{
         expect(landlord1.email).toBe('tom@gmail.com');
         expect(landlord1.points).toBe(10);
     })
-    
+
+
 })
 
+
+describe('Rentex static properties and methods',()=>{
+        test('Management fee implementation',()=>{
+            const landlord = new Landlord('Tom','tom@email.com',3421)
+            const fee = landlord.calculateMonthlyFee(850)
+            expect(fee).toBe('€85.00')
+        })
+        test('Static utility format currency',()=>{
+            const formattedresult = User.formatCurrency(850);
+            expect(formattedresult).toBe('€850.00')
+        })
+
+        test('Tenant currency format',()=>{
+            const tenant = new Tenant('name','email',1250)
+            const rent = User.formatCurrency(tenant.monthly_rent)
+            expect(rent).toBe('€1250.00')
+        })
+})
