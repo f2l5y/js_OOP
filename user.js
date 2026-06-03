@@ -2,14 +2,17 @@
 
   //User class
   class User{
-      #name;
-      #email;
+
       constructor(name,email){
          this._validationRequired({ name, email }); 
-         this.#name = name;
-         this.#email = email;
+         this.name = name;
+         this.email = email;
          this.points = 0
 
+      }
+
+      getDetails(){
+         return `Name: ${this.name}, Email: ${this.email}`
       }
 
       _validationRequired(fields){
@@ -31,20 +34,20 @@
 
       set name(value){
        this._validationRequired({name: value})
-       this.#name = value
+       this._name = value
       }
 
       get name(){
-         return this.#name
+         return this._name
       }
       
       set email(value){
          this._validationRequired({email:value})
-         this.#email = value
+         this._email = value
       }
 
       get email(){
-         return this.#email
+         return this._email
       }
 
       addPoints(amount){
@@ -59,11 +62,15 @@
 
    class Tenant extends User{
       #onTimeStreak = 0;
-      #monthly_rent;
 
       constructor(name,email,monthly_rent){
          super(name,email) 
          this.monthly_rent = monthly_rent;
+      }
+
+      getDetails(){
+        
+         return `${super.getDetails()}, Rent: ${this.monthly_rent}`
       }
 
       set monthly_rent(value){
@@ -127,6 +134,10 @@
 
          get bank_account_id(){
             return this.#bank_account_id;
+         }
+
+         getDetails(){
+            return `${super.getDetails()}, bank id: ${this.#bank_account_id}`
          }
 
          calculateMonthlyFee(rentAmount){

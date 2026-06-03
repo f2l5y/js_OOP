@@ -137,3 +137,20 @@ describe('Rentex static properties and methods',()=>{
             expect(rent).toBe('€1250.00')
         })
 })
+
+
+
+describe('extend override method',()=>{
+    test('User method details',()=>{
+        const user = new User('tom','email')
+        expect(user.getDetails()).toBe('Name: tom, Email: email')
+    })
+    test('Tenant method details',()=>{
+        const user = new Tenant('tom','email',1000)
+        expect(user.getDetails()).toBe('Name: tom, Email: email, Rent: 1000')
+    })
+    test('Landlord method details',()=>{
+        const user = new Landlord('tom','email',1548248)
+        expect(user.getDetails()).toBe('Name: tom, Email: email, bank id: 1548248')
+    })
+})
