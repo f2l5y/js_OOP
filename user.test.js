@@ -1,4 +1,6 @@
-const { User, Tenant, Landlord, UserFactory, TenantFactory} = require('./user')
+import User from './src/user.js'
+import Tenant from './src/tenant.js'
+import Landlord from './src/landlord.js'
 
 let user1
 let tenant1;
@@ -28,17 +30,7 @@ describe('User',()=>{
     })
     
 
-    test('User factory function',()=>{
-        const user2 = UserFactory('john doe','johndoe@gmail.com')
-        expect(user2.user_name).toBe('john doe')
-        expect(user2.user_email).toBe('johndoe@gmail.com')
-        expect(user2.getPoints()).toBe(0)
-        user2.addPoints(50)
-        expect(user2.getPoints()).toBe(50)
-        expect(user2.points).toBeUndefined()
- 
 
-    })
 })
 
 
@@ -80,15 +72,6 @@ describe('Tenant',()=>{
         expect(user1.points).toBe(30);
     })
 
-    test('Testing the factory function',()=>{
-        const user3 = TenantFactory('tom','tom@email.com',500)
-        user3.addPoints(1000)
-        expect(user3.getPoints()).toBe(1000)
-        user3.addPoints(1000)
-        expect(user3.getPoints()).toBe(2000)
-        expect(user3.tenant_name).toBe('tom')
-        expect(user3.tenant_email).toBe('tom@email.com')
-    })
 
 
     test('Regualar on-time payment triggers private #addPoints', ()=>{
