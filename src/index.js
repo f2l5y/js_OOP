@@ -1,3 +1,4 @@
+import './style.css';
 import Tenant from "./tenant.js";
 import Landlord from "./landlord.js";
 
