@@ -5,7 +5,8 @@
   "description": "rentex",
   "main": "src/user.js",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
